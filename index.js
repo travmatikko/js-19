@@ -17,12 +17,25 @@
  */
 
 // Створюємо об'єкт Book
+const Book = {
+  title: "Загальна Книга",
+  author: "Анонім",
+  pages: 0,
+  read() {
+    console.log(`Ви читаєте "${this.title}" від ${this.author}`);
+  },
+};
 
 console.log("Завдання: 1 ==============================");
 
 // Виводимо в консоль Об'єкт: Book
+console.log(Book);
 
 // Виводимо в консоль прототип Об'єкту: Book
+const protoBook = Object.create(Book);
+
+console.log(Object.getPrototypeOf(protoBook) === Book);
+Book.read();
 
 // Викликаємо функцію read об'єкту Book
 
@@ -38,15 +51,17 @@ console.log("Завдання: 1 ==============================");
  */
 
 // Створюємо об'єкт Novel, наслідуємо властивості і функції від об'єкта Book
-
+const Novel = Object.create(Book);
 // Додаємо властивість genre
+Novel.genre = "Новела";
 
 console.log("Завдання: 2 ==============================");
 
 // Виводимо в консоль Об'єкт: Novel
+console.log(Novel);
 
 // Виводимо в консоль прототип Об'єкту: Novel
-
+console.log(Object.getPrototypeOf(Novel));
 // 3. Створення нового об'єкту та зміна його прототипу
 
 /*
@@ -62,13 +77,23 @@ console.log("Завдання: 2 ==============================");
 
 // Створюємо об'єкт Biography
 
+const Biography = {
+  title: "Загальна Біографія",
+  author: "Біограф",
+  pages: 200,
+};
+
 // Змінемо прототип об'єкта Biography на Novel
+
+Object.setPrototypeOf(Biography, Novel);
 
 console.log("Завдання: 3 ==============================");
 // Виводимо в консоль Об'єкт: Biography
 
-// Перевіримо чи являється Novel прототипом Biography та виведемо в консоль
+console.log(Biography);
 
+// Перевіримо чи являється Novel прототипом Biography та виведемо в консоль
+console.log(Novel.isPrototypeOf(Biography));
 // 4. Інкапсуляція властивості та додання властивості
 /*
  * Об'єкт: ScienceBook
